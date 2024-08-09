@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getSpecificProducts } from "../../../redux/userHandle";
+import { getSpecificProducts} from "../../../redux/userHandle";
+import { setSource } from "../../../redux/userSlice";
 import { useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import { BlueButton, GreenButton } from "../../../utils/buttonStyles";
@@ -13,6 +14,7 @@ const OutForDeliverySection = () => {
     const { currentUser, specificProductData, responseSpecificProducts } = useSelector(state => state.user);
 
     useEffect(() => {
+        dispatch(setSource("outOfDelivery"));
         dispatch(getSpecificProducts(currentUser._id, "getOrderedProductsBySeller"));
     }, [dispatch, currentUser._id])
 

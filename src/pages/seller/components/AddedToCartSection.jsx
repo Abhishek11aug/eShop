@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getSpecificProducts } from "../../../redux/userHandle";
+import { setSource } from "../../../redux/userSlice";
 import { useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import { BlueButton, GreenButton } from "../../../utils/buttonStyles";
@@ -11,8 +12,9 @@ const AddedToCartSection = () => {
     const dispatch = useDispatch();
 
     const { currentUser, specificProductData, responseSpecificProducts } = useSelector(state => state.user);
-
+    
     useEffect(() => {
+        dispatch(setSource("addedToCart"));
         dispatch(getSpecificProducts(currentUser._id, "getAddedToCartProducts"));
     }, [dispatch, currentUser._id])
 
@@ -30,7 +32,7 @@ const AddedToCartSection = () => {
             category: product.category,
             subcategory: product.subcategory,
             id: product.productName,
-            productID: product._id,
+            productID: product.productID,
         }))
         : [];
 

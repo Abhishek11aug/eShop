@@ -4,19 +4,20 @@ import { useParams } from 'react-router-dom';
 import { getCustomers } from '../../../redux/userHandle';
 import TableTemplate from '../../../components/TableTemplate';
 import { Typography } from '@mui/material';
-import { IndigoButton } from '../../../utils/buttonStyles';
 
 const ShowCustomers = () => {
     const dispatch = useDispatch();
     const params = useParams();
     const customerID = params.id;
 
-    useEffect(() => {
-        dispatch(getCustomers(customerID, "getInterestedCustomers"));
-    }, [customerID, dispatch]);
+    const { loading, customersList, source } = useSelector(state => state.user);
+    console.log(source);
 
-    const { loading, customersList} = useSelector(state => state.user);
-    
+    useEffect(() => {
+        const endpoint = source === "outOfDelivery" ? "getCustomersWhoOrderedProduct" : "getInterestedCustomers";
+        dispatch(getCustomers(customerID, endpoint));
+    }, [customerID, dispatch, source]);
+
     const customersColumns = [
         { id: 'name', label: 'Customer Name', minWidth: 170 },
         { id: 'quantity', label: 'Product Quantity', minWidth: 100 },
@@ -63,6 +64,6 @@ const ShowCustomers = () => {
             }
         </>
     )
-}
+};
 
-export default ShowCustomers
+export default ShowCustomers;

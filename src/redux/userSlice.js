@@ -26,6 +26,7 @@ const initialState = {
     productDetailsCart: {},
     filteredProducts: [],
     customersList: [],
+    source: null 
 };
 
 const updateCartDetailsInLocalStorage = (cartDetails) => {
@@ -260,8 +261,9 @@ const userSlice = createSlice({
             state.error = null;
         },
 
-        getCustomersListFailed: (state, action) => {
-            state.responseCustomersList = action.payload;
+        getCustomersListFailed: (state) => {
+            state.customersList = null;
+            state.responseCustomersList = null;
             state.loading = false;
             state.error = null;
         },
@@ -277,6 +279,9 @@ const userSlice = createSlice({
             state.loading = false;
             state.error = null;
         },
+        setSource:(state,action)=>{
+            state.source = action.payload;
+        }
     },
 });
 
@@ -315,6 +320,7 @@ export const {
     removeAllFromCart,
     fetchProductDetailsFromCart,
     updateCurrentUser,
+    setSource,
 } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;
