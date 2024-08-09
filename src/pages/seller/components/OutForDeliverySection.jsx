@@ -46,7 +46,7 @@ const OutForDeliverySection = () => {
                 </BlueButton >
                 <GreenButton
                     onClick={() => {
-                        console.log("show")
+                        navigate("/Seller/orders/customers/" + row.productID)
                     }}
                 >
                     Show Customers
@@ -72,7 +72,7 @@ const OutForDeliverySection = () => {
                         Products List:
                     </Typography>
 
-                    <TableTemplate buttonHaver={ProductsButtonHaver} columns={productsColumns} rows={productsRows} />
+                    <TableTemplate buttonHaver={ProductsButtonHaver} columns={productsColumns} rows={productsRows} noShow={true} />
                 </>
             }
         </>

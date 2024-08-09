@@ -30,7 +30,7 @@ const AddedToCartSection = () => {
             category: product.category,
             subcategory: product.subcategory,
             id: product.productName,
-            productID: product.productID,
+            productID: product._id,
         }))
         : [];
 
@@ -72,7 +72,7 @@ const AddedToCartSection = () => {
                         Products List:
                     </Typography>
 
-                    <TableTemplate buttonHaver={ProductsButtonHaver} columns={productsColumns} rows={productsRows} />
+                    <TableTemplate buttonHaver={ProductsButtonHaver} columns={productsColumns} rows={productsRows} noShow={true} />
                 </>
             }
         </>

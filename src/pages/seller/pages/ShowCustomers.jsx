@@ -15,7 +15,7 @@ const ShowCustomers = () => {
         dispatch(getCustomers(customerID, "getInterestedCustomers"));
     }, [customerID, dispatch]);
 
-    const { loading, customersList, responseCustomersList } = useSelector(state => state.user);
+    const { loading, customersList} = useSelector(state => state.user);
     
     const customersColumns = [
         { id: 'name', label: 'Customer Name', minWidth: 170 },
@@ -33,13 +33,7 @@ const ShowCustomers = () => {
     const CustomersButtonHaver = ({ row }) => {
         return (
             <>
-                <IndigoButton
-                    onClick={() => {
-                        console.log(row.name)
-                    }}
-                >
-                    View Customer History
-                </IndigoButton >
+                
             </>
         );
     };
@@ -52,7 +46,7 @@ const ShowCustomers = () => {
                 </h1>
                 :
                 <>
-                    {responseCustomersList ?
+                    {!customersList ?
                         <h1>
                             No Customers Till Now
                         </h1>
@@ -62,7 +56,7 @@ const ShowCustomers = () => {
                                 Customers List:
                             </Typography>
 
-                            <TableTemplate buttonHaver={CustomersButtonHaver} columns={customersColumns} rows={customersRows} />
+                            <TableTemplate buttonHaver={CustomersButtonHaver} columns={customersColumns} rows={customersRows} noShow={false}/>
                         </>
                     }
                 </>
