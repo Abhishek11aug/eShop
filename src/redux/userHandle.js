@@ -25,8 +25,8 @@ import {
     specificProductSuccess,
     updateCurrentUser,
 } from './userSlice';
-// const backend_URL = "https://eshop-backend-silk.vercel.app/";
-const backend_URL = "http://localhost:8000/";
+const backend_URL = "https://eshop-backend-silk.vercel.app/";
+// const backend_URL = "http://localhost:8000/";
 export const authUser = (fields, role, mode) => async (dispatch) => {
     dispatch(authRequest());
 
