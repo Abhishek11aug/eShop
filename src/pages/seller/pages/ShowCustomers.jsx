@@ -10,13 +10,11 @@ const ShowCustomers = () => {
     const params = useParams();
     const customerID = params.id;
 
-    const { loading, customersList, source } = useSelector(state => state.user);
-    console.log(source);
+    const { loading, customersList } = useSelector(state => state.user);
 
     useEffect(() => {
-        const endpoint = source === "outOfDelivery" ? "getCustomersWhoOrderedProduct" : "getInterestedCustomers";
-        dispatch(getCustomers(customerID, endpoint));
-    }, [customerID, dispatch, source]);
+        dispatch(getCustomers(customerID, "getInterestedCustomers"));
+    }, [customerID, dispatch]);
 
     const customersColumns = [
         { id: 'name', label: 'Customer Name', minWidth: 170 },
